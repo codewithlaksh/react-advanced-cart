@@ -50,8 +50,19 @@ const CartState = (props) => {
     }
   }
 
+  const deleteFromCart = (item) => {
+    delete cart[item]
+    localStorage.setItem('icart', JSON.stringify(cart));
+    fetchCart();
+  }
+
+  const clearCart = (item) => {
+    localStorage.setItem('icart', JSON.stringify({}))
+    fetchCart();
+  }
+
   return (
-    <CartContext.Provider value={{ cart, addToCart, updateCart, filterCart, cartCount }}>
+    <CartContext.Provider value={{ cart, addToCart, updateCart, filterCart, cartCount, deleteFromCart, clearCart }}>
       {props.children}
     </CartContext.Provider>
   )

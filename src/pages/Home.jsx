@@ -90,10 +90,10 @@ const Home = () => {
             <div className='' key={catID}>
               <h2 className='text-xl text-blue-500 font-bold'>{cat.name} ({countProducts(cat.id)})</h2>
 
-              <div className='flex flex-wrap'>
+              <div className='lg:flex lg:flex-wrap md:block'>
                 {filterProducts(cat.id).map((prod, prodID) => {
                   return (
-                    <div className='border shadow-sm rounded w-1/4 mr-3 my-2' key={prodID}>
+                    <div className='border shadow-sm rounded lg:w-1/4 w-full mr-3 my-2' key={prodID}>
                       <img src={prod.image} alt="" />
 
                       <div className="p-3">

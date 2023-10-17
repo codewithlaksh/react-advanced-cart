@@ -20,7 +20,7 @@ const Header = () => {
                     <Link to="#" className="mr-5 hover:text-gray-900">Contact Us</Link>
                 </nav>
                 <Link to={"/mycart"} className="inline-flex items-center bg-emerald-500 border-0 py-2 px-3 focus:outline-none hover:bg-emerald-600 rounded text-base mt-4 md:mt-0 text-white font-semibold relative">
-                    <FaShoppingCart />&nbsp;Cart
+                    <i className="fa fa-shopping-cart"></i>&nbsp;Cart
                     <span id='cartCount' className='absolute bg-red-500 text-white font-semibold w-4 h-4 -top-1 -right-1 rounded-full text-center text-xs'>
                         {cartCount}
                     </span>
