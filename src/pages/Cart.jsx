@@ -1,12 +1,14 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import CartContext from '../utils/cartContext'
 
 const Cart = () => {
   document.title = 'MyCart  - Advanced React Cart App'
 
-  const { cart, updateCart, filterCart, cartCount, deleteFromCart, clearCart } = useContext(CartContext);
+  const { cart, updateCart, filterCart, cartCount, deleteFromCart, clearCart, filteredCart } = useContext(CartContext);
+  const [search, setSearch] = useState('');
 
   const handleFilterCart = (e) => {
+    setSearch(e.target.value);
     filterCart(e.target.value);
   }
 
@@ -38,7 +40,7 @@ const Cart = () => {
         <input type="text" className='w-full p-1 border-2 focus:shadow focus:outline-none rounded-md border-blue-500 mt-4' name='searchInp' id='searchInp' onChange={handleFilterCart} />
       </div>}
 
-      {Object.keys(cart).length > 0 && Object.entries(cart).map((item, index) => {
+      {Object.keys(cart).length > 0 && Object.entries(search === '' ? cart : filteredCart).map((item, index) => {
         return <div className='border-2 shadow-sm p-3 my-3 rounded-md border-blue-500 flex items-center justify-between' key={index}>
           <p className='font-semibold'>{item[0]}</p>
           <p className='font-semibold flex items-center justify-between'>

@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom'
 const Home = () => {
   document.title = 'Home - Advanced React Cart App'
 
-  const { cart, addToCart, updateCart } = useContext(CartContext);
+  const { cart, addToCart } = useContext(CartContext);
 
 
   const categories = [
@@ -78,6 +78,8 @@ const Home = () => {
     e.target.setAttribute('disabled', true);
     e.target.classList.add('disabled:bg-gray-400');
     e.target.innerText = 'Item added to cart';
+
+    e.target.parentNode.innerHTML += `<a href="/mycart" class='inline-flex items-center bg-blue-500 border-0 px-2 py-1 focus:outline-none hover:bg-blue-600 rounded text-base mt-4 md:mt-0 text-white font-semibold relative mx-2'>Go to Cart</a>`;
   }
 
   return (
@@ -105,14 +107,14 @@ const Home = () => {
                       </div>
 
                       <div className='mb-0 bg-gray-100 p-4'>
-                        {cart[prod.name] === undefined && <button data-prodname={prod.name} className='inline-flex items-center bg-emerald-500 border-0 px-2 py-1 focus:outline-none hover:bg-emerald-600 rounded text-base mt-4 md:mt-0 text-white font-semibold relative' onClick={handleAddToCart}>
+                        {cart[prod.name] === undefined && <button data-prodname={prod.name} className='inline-flex items-center bg-blue-500 border-0 px-2 py-1 focus:outline-none hover:bg-blue-600 rounded text-base mt-4 md:mt-0 text-white font-semibold relative' onClick={handleAddToCart}>
                           <FaCartPlus /> Add To Cart
                         </button>}
                         {cart[prod.name] !== undefined && <>
-                          <button className='inline-flex items-center bg-emerald-500 border-0 px-2 py-1 focus:outline-none hover:bg-emerald-600 rounded text-base mt-4 md:mt-0 text-white font-semibold relative disabled:bg-gray-400' disabled={true}>
+                          <button className='inline-flex items-center bg-blue-500 border-0 px-2 py-1 focus:outline-none hover:bg-blue-600 rounded text-base mt-4 md:mt-0 text-white font-semibold relative disabled:bg-gray-400' disabled={true}>
                             Item added to cart
                           </button>
-                          <Link to={"/mycart"} className='inline-flex items-center bg-emerald-500 border-0 px-2 py-1 focus:outline-none hover:bg-emerald-600 rounded text-base mt-4 md:mt-0 text-white font-semibold relative mx-2'>Go to Cart</Link>
+                          <Link to={"/mycart"} className='inline-flex items-center bg-blue-500 border-0 px-2 py-1 focus:outline-none hover:bg-blue-600 rounded text-base mt-4 md:mt-0 text-white font-semibold relative mx-2'>Go to Cart</Link>
                         </>}
                       </div>
                     </div>

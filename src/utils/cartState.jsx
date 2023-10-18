@@ -3,6 +3,7 @@ import CartContext from './cartContext'
 
 const CartState = (props) => {
   const [cart, setCart] = useState({});
+  const [filteredCart, setFilteredCart] = useState({});
   const [cartCount, setCartCount] = useState(0);
 
   useEffect(() => {
@@ -46,7 +47,7 @@ const CartState = (props) => {
       setCart(parsed)
     } else {
       const res = Object.keys(cart).filter(e => e.toLowerCase().includes(value.toLowerCase())).reduce((res, e) => Object.assign(res, { [e]: cart[e] }), {})
-      setCart(res);
+      setFilteredCart(res);
     }
   }
 
@@ -56,13 +57,13 @@ const CartState = (props) => {
     fetchCart();
   }
 
-  const clearCart = (item) => {
+  const clearCart = () => {
     localStorage.setItem('icart', JSON.stringify({}))
     fetchCart();
   }
 
   return (
-    <CartContext.Provider value={{ cart, addToCart, updateCart, filterCart, cartCount, deleteFromCart, clearCart }}>
+    <CartContext.Provider value={{ cart, addToCart, updateCart, filterCart, cartCount, deleteFromCart, clearCart, filteredCart }}>
       {props.children}
     </CartContext.Provider>
   )
